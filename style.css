@@ -336,11 +336,21 @@ main {
   gap: 15px;
 }
 
-/* .avatar-box {
+.avatar-box {
   background: var(--bg-gradient-onyx);
-  border-radius: 
-  20px;
-} */
+  border-radius: 20px;
+  overflow: hidden;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.avatar-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
 
 .info-content .name {
   color: var(--white-2);
@@ -353,7 +363,7 @@ main {
 .info-content .title {
   color: var(--white-1);
   background: var(--onyx);
-  font-size: var(--fs-18);
+  font-size: var(--fs-8);
   font-weight: var(--fw-300);
   width: max-content;
   padding: 3px 12px;
@@ -1343,9 +1353,17 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .sidebar-info { gap: 25px; }
 
-  /* .avatar-box { border-radius: 30px; } */
+  .avatar-box { 
+    width: 120px;
+    height: 120px;
+    border-radius: 30px; 
+  }
 
-  /* .avatar-box img { width: 130px; } */
+  .avatar-box img { 
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+  }
 
   .info-content .name { margin-bottom: 15px; }
 
@@ -1841,8 +1859,15 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .sidebar-info { flex-direction: column; }
 
-  .avatar-box img { width: 150px;
-   }
+  .avatar-box { 
+    width: 150px;
+    height: 150px;
+  }
+
+  .avatar-box img { 
+    width: 100%;
+    height: 100%;
+  }
 
   .info-content .name {
     white-space: nowrap;
@@ -1878,16 +1903,60 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .social-list { justify-content: center; }
 
-
-
-  /**
-	 * RESUME
-	 */
-
-  .timeline-text { max-width: 700px; }
-
 }
-.profile{
-  border-radius: 400px
-  ;
+
+/* Mobile specific styles for profile picture */
+@media (max-width: 579px) {
+  .avatar-box {
+    width: 70px;
+    height: 70px;
+    min-width: 70px;
+    min-height: 70px;
+    border-radius: 16px;
+  }
+
+  .avatar-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+
+  .sidebar-info {
+    gap: 12px;
+  }
+
+  .info-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .info-content .name {
+    font-size: var(--fs-4);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .info-content .title {
+    font-size: var(--fs-8);
+    padding: 2px 8px;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 320px) {
+  .avatar-box {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    min-height: 60px;
+  }
+
+  .sidebar-info {
+    gap: 10px;
+  }
+
+  .info-content .name {
+    font-size: var(--fs-5);
+  }
 }
