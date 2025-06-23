@@ -1237,6 +1237,75 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 .form-btn:disabled:hover::before { background: var(--bg-gradient-jet); }
 
+/* Email Status Styles */
+.email-status {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 14px;
+  border: 1px solid var(--jet);
+  background: var(--eerie-black-2);
+}
+
+.status-message {
+  font-size: var(--fs-6);
+  font-weight: var(--fw-400);
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  transition: var(--transition-1);
+}
+
+.status-message.success {
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+.status-message.error {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+/* Loading animation for form button */
+.form-btn.loading {
+  pointer-events: none;
+}
+
+.form-btn.loading span {
+  opacity: 0.7;
+}
+
+.form-btn.loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: auto;
+  border: 2px solid transparent;
+  border-top-color: var(--orange-yellow-crayola);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive email status */
+@media (max-width: 580px) {
+  .email-status {
+    margin-top: 15px;
+    padding: 12px;
+  }
+  
+  .status-message {
+    font-size: var(--fs-7);
+    padding: 8px;
+  }
+}
+
 
 
 

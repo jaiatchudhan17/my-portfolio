@@ -23,6 +23,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!--
+    - EmailJS SDK
+  -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 
 <body>
@@ -825,6 +830,11 @@ Achieved 59% in 10th grade at Sri Vinesh Public School.
 
           </form>
 
+          <!-- Email Status Messages -->
+          <div class="email-status" id="emailStatus" style="display: none;">
+            <div class="status-message" id="statusMessage"></div>
+          </div>
+
         </section>
 
       </article>
@@ -832,11 +842,6 @@ Achieved 59% in 10th grade at Sri Vinesh Public School.
     </div>
 
   </main>
-
-
-
-
-
 
   <!--
     - custom js link

@@ -1,11 +1,12 @@
 'use strict';
 
-
+// Initialize EmailJS
+(function() {
+  emailjs.init("YOUR_PUBLIC_KEY"); // You'll need to replace this with your actual EmailJS public key
+})();
 
 // element toggle function
 const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
-
-
 
 // sidebar variables
 const sidebar = document.querySelector("[data-sidebar]");
@@ -13,8 +14,6 @@ const sidebarBtn = document.querySelector("[data-sidebar-btn]");
 
 // sidebar toggle functionality for mobile
 sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); });
-
-
 
 // testimonials variables
 const testimonialsItem = document.querySelectorAll("[data-testimonials-item]");
@@ -52,8 +51,6 @@ for (let i = 0; i < testimonialsItem.length; i++) {
 // add click event to modal close button
 modalCloseBtn.addEventListener("click", testimonialsModalFunc);
 overlay.addEventListener("click", testimonialsModalFunc);
-
-
 
 // custom select variables
 const select = document.querySelector("[data-select]");
@@ -113,12 +110,12 @@ for (let i = 0; i < filterBtn.length; i++) {
 
 }
 
-
-
 // contact form variables
 const form = document.querySelector("[data-form]");
 const formInputs = document.querySelectorAll("[data-form-input]");
 const formBtn = document.querySelector("[data-form-btn]");
+const emailStatus = document.getElementById("emailStatus");
+const statusMessage = document.getElementById("statusMessage");
 
 // add event to all form input field
 for (let i = 0; i < formInputs.length; i++) {
@@ -134,7 +131,59 @@ for (let i = 0; i < formInputs.length; i++) {
   });
 }
 
+// Email sending functionality
+function showStatus(message, isSuccess = false) {
+  statusMessage.textContent = message;
+  statusMessage.className = `status-message ${isSuccess ? 'success' : 'error'}`;
+  emailStatus.style.display = 'block';
+  
+  // Auto hide after 5 seconds
+  setTimeout(() => {
+    emailStatus.style.display = 'none';
+  }, 5000);
+}
 
+function sendEmail(templateParams) {
+  return emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+    .then(function(response) {
+      console.log('SUCCESS!', response.status, response.text);
+      showStatus('Message sent successfully! I will get back to you soon.', true);
+      form.reset();
+      formBtn.setAttribute("disabled", "");
+    }, function(error) {
+      console.log('FAILED...', error);
+      showStatus('Failed to send message. Please try again or contact me directly.', false);
+    });
+}
+
+// Handle form submission
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  if (!form.checkValidity()) {
+    showStatus('Please fill in all required fields correctly.', false);
+    return;
+  }
+
+  // Show loading state
+  const originalText = formBtn.querySelector('span').textContent;
+  formBtn.querySelector('span').textContent = 'Sending...';
+  formBtn.setAttribute("disabled", "");
+
+  // Prepare template parameters
+  const templateParams = {
+    from_name: formInputs[0].value,
+    from_email: formInputs[1].value,
+    message: formInputs[2].value,
+    to_email: 'jaiatchuthan@gmail.com',
+    reply_to: formInputs[1].value
+  };
+
+  // Send email
+  sendEmail(templateParams).finally(() => {
+    formBtn.querySelector('span').textContent = originalText;
+  });
+});
 
 // page navigation variables
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
