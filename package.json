@@ -1,0 +1,22 @@
+{
+  "name": "jai-atchuthan-portfolio",
+  "version": "1.0.0",
+  "description": "Personal portfolio website for Jai Atchuthan - UI/UX Developer and AI/ML Engineer",
+  "main": "index.html",
+  "scripts": {
+    "dev": "live-server --port=3000 --open=/",
+    "start": "live-server --port=3000 --open=/",
+    "build": "echo 'Static site - no build process needed'"
+  },
+  "keywords": [
+    "portfolio",
+    "ui-ux",
+    "ai-ml",
+    "web-development"
+  ],
+  "author": "Jai Atchuthan",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
